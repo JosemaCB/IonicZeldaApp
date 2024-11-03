@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Materials</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let material of materials" (click)="openDetailsModal(material)">
+      <ion-thumbnail slot="start">
+        <img [src]="material.image" alt="{{ material.name }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ material.name }}</h2>
+        <p>Locations: {{ material.common_locations?.join(', ') || 'Unknown' }}</p>
+      </ion-label>
+      <ion-note slot="end">
+        <ion-icon name="heart" color="danger" *ngFor="let heart of getHeartsArray(material.hearts_recovered)"></ion-icon>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

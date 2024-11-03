@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Paw</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let creature of creatures" (click)="openDetailsModal(creature)">
+      <ion-thumbnail slot="start">
+        <img [src]="creature.image" alt="{{ creature.name }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ creature.name }}</h2>
+        <p>Locations: {{ creature.common_locations?.join(', ') || 'Unknown' }}</p>
+      </ion-label>
+      <!-- Íconos de corazón en el slot final -->
+      <ion-note slot="end">
+        <ion-icon name="heart" color="danger" *ngFor="let heart of getHeartsArray(creature.hearts_recovered)"></ion-icon>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>
